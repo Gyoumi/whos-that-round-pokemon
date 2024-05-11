@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'pokemon-solid';
+    src: url('./files/fonts/Pokemon Solid.ttf');
+}
+
+@font-face {
+    font-family: 'pokemon-hollow';
+    src: url('./files/fonts/Pokemon Hollow.ttf');
+}
+body {
+    margin: 0;
+    border: 0;
+    background-color: #f5f1cd;
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-size: 1.5vw;
+    color: black;
+    text-fill-color: black;
+    -webkit-text-fill-color: black;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+H1{
+    font-weight: 700;
+}
+#welcome {
+    margin: 0;
+    border: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: #1C1C1C;
+}
+
+#welcome h1 {
+    -webkit-text-fill-color: white;
+    color: white;
+    font-family: "Anonymous Pro", sans-serif;
+    display: flex;
+    align-items: flex-end;
+    font-size: 4vw;
+}
+
+#welcome img {
+    width: 50vw;
+    border-radius: 2.5em;
+}
+
+#page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vh;
+}
+.pokemon {
+    text-align: center;
+    font-family: pokemon-solid, monospace;
+    font-size: 3vw;
+    letter-spacing: 0.1em; 
+    -webkit-text-stroke: 5px #3A5EA9;
+    text-stroke: 5px #3A5EA9; 
+    -webkit-text-fill-color: #FFCB05; 
+    text-fill-color: #FFCB05; 
+    text-shadow:  
+      -6px 6px 0 #1D2C5E,   
+      -10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+#guesses {
+    display: none;
+}
+
+#answer {
+    display: none;
+}
+  
+  p {
+    text-align: center;
+    font-size: 0.7vw;
+  }
+
+  .is-it {
+    height: 50vh;
+  }
+  
+  .guess-div {
+    height: 100vh;
+    text-align: center;
+  }
+
+  .guess-div img {
+    height: 40vh;
+  }
+
+  #voltorb {
+    height: 43.5vh;
+  }
+
+  #electrode {
+    height: 44.3vh;
+  }
+
+  .nope {
+    height: 70vh;
+  }
+
+  .fullview-text {
+    height: 50vh;
+  }
+
+  .halfview-text {
+    height: 30vh;
+  }
+
+  #guess {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }  
+
+  #custom-guess-form {
+    font-size: 16px;
+  }
+
+
+  #custom-guess-form input {
+  }
+
+  .custom-guess-label {
+  }
+  
+
+  #custom-guess-form button {
+  }
+  
+  #show-guesses {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  canvas {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  #show-answer {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .discord-button {
+    background-color: #FFCB05; 
+    border: none;
+    color: #3A5EA9; 
+    padding: 10px 20px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; 
+  }
+  
+  .discord-button:hover {
+    background-color: #3A5EA9; 
+    color: #FFCB05; 
+  }
+  
+  .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #3A5EA9; 
+    color: #FFCB05; 
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .button:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }

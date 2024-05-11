@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who's That Pokémon?</title>
+  <script src="./wordcloud/wordcloud2.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="audioPlayer" src="files/who's_that_PoKéMoN.mp3" autoplay></audio>
+  <div id="welcome">
+        <H1>Who's that</H1> 
+      <img src="files/circle.png" alt="Who's That PoKéMoN?">
+  </div>
+
+  <div id="page">
+
+    <H2 class="is-it">Is it..</H2>
+    <div class="guess-div">
+
+      <H3 class="pokemon">Voltorb..?</H3>
+      <img src="files/voltorb-kanto.png" alt="Voltorb?" id="voltorb">
+      <img src="files/voltorb-hisui.png" alt="Voltorb Hisui?">
+    </div>
+    <div class="guess-div">
+      <H3>Nope!</H3>
+      <p>the silhouettes don't match!</p>
+      <img src="files/voltorb-kanto-silhouette.png" alt="Voltorb Silhouette" id="voltorb">
+      <img src="files/voltorb-hisui-silhouette.png" alt="Voltorb Hisui Silhouette">
+    </div>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Electrode..?</H3>
+      <img src="files/electrode-kanto.png" alt="Electrode?" id="electrode">
+      <img src="files/electrode-hisui.png" alt="Electrode Hisui?">
+    </div>
+    <div class="fullview-text">
+      <H5>the shapes seem to match this time!</H5>
+      <H5>but...</H5>
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+    <H4 class="fullview-text">don't tell me..</H4>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Jigglypuff seen from above?</H3>
+      <img src="files/jigglypuff-from-above.gif" alt="Jigglypuff from above?">
+
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+      <H3 class="pokemon">Solosis?</H3>
+      <img src="files/solosis.png" alt="Solosis?">
+    </div>
+    <H3 class="nope">Nope!</H3>
+
+    <H4 class="fullview-text">There aren't a lot of options left now right..?</H4>
+    
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Cherubi (smaller head)?</H3>
+      <img src="files/cherubi-smaller-head-only.png" alt="Cherubi?">
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Togedemaru mid roll?</H3>
+      <img src="files/togedemaru-rolling.gif" alt="Togedemaru mid roll?">
+    </div>
+    <H3 class="nope">Nope!</H3>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Sandshrew curled up?</H3>
+      <img src="files/sandshrew-ball-1.jpg" alt="Sandshrew?">
+      <img src="files/sandshrew-ball-2.gif" alt="Sandshrew?">
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+      
+      <H3 class="pokemon">Phanpy or Donphan mid spin (side view)?</H3>
+      <img src="files/phanpy-spin-dash.gif" alt="Phanpy?">
+      <img src="files/donphan-rollout.gif" alt="Donphan?">
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+  <H2 class="is-it">Is it..</H2>    
+  <div class="guess-div">
+
+      <H3 class="pokemon">Spheal mid roll..?</H3>
+      <img src="files/spheal.gif" alt="Spheal?">
+    </div>
+
+    <H3 class="nope">Nope!</H3>
+
+    <H4 class="halfview-text">I'm out of ideas...</H4>
+
+    <div id = "guess">
+      <H5>Got any guesses of your own?</H5>
+      <div class="container">
+        <div class="entry-area">
+          <form id = "custom-guess-form">
+            <input type = "text" id="custom-guess" name="custom-guess" autocomplete="off">
+            <!-- <label for="custom-guess">Any ideas?</label><br> -->
+            <div class="custom-guess-label">Any ideas?</div>
+            <button type = "submit">Guess!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id = "all-guesses">
+      <H4>Want to see what guesses others have made?</H4>
+      <button id = "show-guesses">Show all guesses!</button>
+      <canvas id = "guesses"></canvas>
+    </div>
+
+      
+    <H2 id = "give-up">Give up?</H2>    
+    <button id = "show-answer">Show answer!</button>
+    <div id = "answer">
+      <H1>Who's that Pokémon?</H1>
+      <img src="files/circle.png" alt="Who's That Pokémon?">
+
+      <H2>It's...</H2>
+      <H1 class="pokemon">Eternatus as my Discord profile picture!</H1>
+      <img src="files/answer.png" alt="Eternatus">
+
+      <H4>Add me on Discord!</H4>
+      <button class="discord-button" onclick="tooltipFunction()" onmouseout="outFunc()">
+        gumm
+          <span class="tooltiptext" id="myTooltip"></span>
+      </button>
+      </div>
+  </div>
+    
+  <script src="./script.js"></script>
+</body>
+</html>
