@@ -106,7 +106,7 @@ H1{
   }
 
   .nope {
-    height: 70vh;
+    height: 50vh;
   }
 
   .fullview-text {
@@ -114,7 +114,7 @@ H1{
   }
 
   .halfview-text {
-    height: 30vh;
+    margin-bottom: 20vh;
   }
 
   #guess {
@@ -199,7 +199,7 @@ H1{
 
   #custom-guess-form button:hover,
   #custom-guess-form button:focus {
-    background-color: red;
+    background-color: #D91413;
     cursor: pointer;
   }
 
@@ -211,9 +211,9 @@ H1{
     box-sizing: border-box;
   }
   
-  #show-guesses {
+  .button {
     position: relative;
-    background-color: hsl(0, 100%, 80%);
+    background-color: #D91413;
     color: white;
     -webkit-text-fill-color: white;
     padding: 0.9rem 2.2rem;
@@ -228,8 +228,8 @@ H1{
     width: 80%;
     height: 40%;
     background: linear-gradient(80deg, 
-              hsl(0, 80%, 80%) 10%, 
-              hsl(0, 85%, 70%) 48%);
+              hsl(0, 90%, 61%) 10%, 
+              hsl(0, 100%, 50%) 48%);
     position: absolute;
     left: 0;
     right: 0;
@@ -336,10 +336,18 @@ H1{
     display: block;
     margin: 0 auto;
   }
+
+  #give-up {
+    margin-top: 20vh;
+  }
   
   #show-answer {
-    display: block;
-    margin: 0 auto;
+    margin: 3rem;
+  }
+
+  #show-answer:hover {
+    cursor: pointer;
+    transform: scale(1.1);
   }
   
   .discord-button {

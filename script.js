@@ -1,3 +1,4 @@
+const audio = document.querySelector('#audio');
 const form = document.querySelector('#custom-guess-form');
 const show_guesses_button = document.querySelector('#show-guesses');
 const guesses = document.querySelector('#guesses');
@@ -5,6 +6,8 @@ const canvas = document.getElementById('guesses')
 
 const show_answer = document.querySelector('#show-answer');
 const answer = document.getElementById('answer');
+
+const ans_img = document.getElementById('result-img');
 
 var displaying_wordcloud = false;
 var displaying_answer = false;
@@ -100,11 +103,22 @@ function showAnswer() {
         answer.style.display = "none";
         show_answer.innerHTML = "Show answer!"
         displaying_answer = false;
+        ans_img.src = "./files/circle.png";
         return;
     }
-    answer.style.display = "block";
-    show_answer.innerHTML = "Hide answer!"
-    displaying_answer = true;
+    audio.play();
+
+    audio.addEventListener("ended", () => {
+        audio.currentTime = 0;
+        answer.style.display = "block";
+        show_answer.innerHTML = "Hide answer!"
+        ans_img.src = "./files/answer.png";
+    
+        const ans_reveal = document.getElementById("answer-reveal");
+        ans_reveal.scrollIntoView(false, {behavior: "smooth"});
+    
+        displaying_answer = true;
+    });
 }
 
 // event listeners

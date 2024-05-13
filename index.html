@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <audio id="audioPlayer" src="files/who's_that_PoKéMoN.mp3" autoplay></audio>
+  <audio id="audio" src="files/who's_that_PoKéMoN.mp3" autoplay></audio>
   <div id="welcome">
         <H1>Who's that</H1> 
       <img src="files/circle.png" alt="Who's That PoKéMoN?">
@@ -131,7 +131,7 @@
 
     <div id = "all-guesses">
       <H4>Want to see what guesses others have made?</H4>
-      <button id="show-guesses">
+      <button id="show-guesses" class="button">
         <span id="show-guesses-text">
           Show all guesses!
         </span>
@@ -143,20 +143,16 @@
         <img src="files/miltank.png" id="show-guesses-miltank">
         <img src="files/gastly.png" id="show-guesses-gastly">
         </button>
-      <!-- <button id = "show-guesses">Show all guesses!</button> -->
       <canvas id = "guesses"></canvas>
     </div>
 
       
     <H2 id = "give-up">Give up?</H2>    
-    <button id = "show-answer">Show answer!</button>
+    <img src="files/circle.png" alt="Who's That Pokémon?" id="result-img">
+    <button id="show-answer" class="button">Show answer!</button>
     <div id = "answer">
-      <H1>Who's that Pokémon?</H1>
-      <img src="files/circle.png" alt="Who's That Pokémon?">
-
       <H2>It's...</H2>
-      <H1 class="pokemon">Eternatus as my Discord profile picture!</H1>
-      <img src="files/answer.png" alt="Eternatus">
+      <H1 class="pokemon" id="answer-reveal">Eternatus as my Discord profile picture!</H1>
 
       <H4>Add me on Discord!</H4>
       <button class="discord-button" onclick="tooltipFunction()" onmouseout="outFunc()">
