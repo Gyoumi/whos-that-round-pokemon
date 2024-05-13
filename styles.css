@@ -122,27 +122,214 @@ H1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
   }  
+
+  .container {
+    width: 32rem;
+    margin-left: -3.5vw;
+  }
+
+  .entry-area {
+    position: relative;
+    height: 80px;
+    line-height: 80px;
+  }
 
   #custom-guess-form {
     font-size: 16px;
   }
 
-
   #custom-guess-form input {
+    position: absolute;
+    width: 100%;
+    outline: none;
+    font-size: 1.2em;
+    padding: 0 60px;
+    line-height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(100, 100, 100);
+    transition: 0.1s ease;
+    z-index: 1111;
+    background-image: url(files/ball-white.png);
+    background-color: transparent;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: 1%;
   }
 
   .custom-guess-label {
+    position: absolute;
+    font-size: 1.2em;
+    margin: 0 55px;
+    bottom: 0px;
+    height: 100px;
+    color: white;
+    padding: 0 10px;
+    transition: 0.2s ease;
+    background-color: #f5f1cd;
+    -webkit-text-fill-color: rgb(100, 100, 100);
   }
-  
+
+  #custom-guess-form input:focus,
+  #custom-guess-form input:valid{
+    border: 4px solid red;
+    background-image: url(files/ball-red.png);
+  }
+
+  #custom-guess-form input:focus + .custom-guess-label,
+  #custom-guess-form input:valid + .custom-guess-label{
+    height: 30px;
+    line-height: 30px;
+    transform: translate(2px, -64px) scale(0.88);
+    z-index: 1111;
+    -webkit-text-fill-color: black;
+  }
 
   #custom-guess-form button {
+    margin-top: 3rem;
+    margin-left: 15.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+    -webkit-text-fill-color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.2s;
+  }
+
+  #custom-guess-form button:hover,
+  #custom-guess-form button:focus {
+    background-color: red;
+    cursor: pointer;
+  }
+
+  #all-guesses {
+    margin-top: 10vh;
+    font-size: 3rem;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
   }
   
   #show-guesses {
-    display: block;
+    position: relative;
+    background-color: hsl(0, 100%, 80%);
+    color: white;
+    -webkit-text-fill-color: white;
+    padding: 0.9rem 2.2rem;
+    border-radius: 3rem;
+    transition: 0.4s;
+    font-weight: 900;
+    font-size: 2rem;
+  }
+
+  #show-guesses::after {
+    content: '';
+    width: 80%;
+    height: 40%;
+    background: linear-gradient(80deg, 
+              hsl(0, 80%, 80%) 10%, 
+              hsl(0, 85%, 70%) 48%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
     margin: 0 auto;
+    border-radius: 3rem;
+    filter: blur(12px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .4s;
+  }
+
+  #show-guesses-text {
+    position: relative;
+    z-index: 10;
+  }
+
+  #show-guesses img {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    pointer-events: none;
+    transition: 0.6s;
+    opacity: 0;
+  }
+
+  #show-guesses-golem {
+    width: 2rem;
+    transform: translate(-25px, -6px) rotate(55deg);
+  }
+
+  #show-guesses-wooloo {
+    width: 2.8rem;
+    transform: translate(7px, -14px) rotate(80deg);
+  }
+
+  #show-guesses-darmanitan {
+    width: 3rem;
+    transform: translate(34, -4px) rotate(-345deg);
+  }
+
+  #show-guesses-eldegoss {
+    width: 3rem;
+    transform: translate(-5px, 15px) rotate(40deg);
+  }
+
+  #show-guesses-applin {
+    width: 3.5rem;
+    transform: translate(9px, -12px) rotate(30deg);
+  }
+
+  #show-guesses-miltank {
+    width: 2.5rem;
+    transform: translate(-30px, -6px) rotate(-180deg);
+  }
+
+  #show-guesses-gastly {
+    width: 2.5rem;
+    transform: translate(30px, 6px) rotate(-120deg);
+  }
+
+  #show-guesses:hover::after {
+    opacity: 1;
+  }
+
+  #show-guesses:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+
+  #show-guesses:hover img {
+    opacity: 1;
+  }
+
+  #show-guesses:hover #show-guesses-golem{
+    transform: translate(-170px, -30px) scale(1.2);
+  }
+
+  #show-guesses:hover #show-guesses-wooloo{
+    transform: translate(100px, -32px) scale(1.1);
+  }
+
+  #show-guesses:hover #show-guesses-darmanitan{
+    transform: translate(175px, -20px) scale(1.1);
+  }
+
+  #show-guesses:hover #show-guesses-eldegoss{
+    transform: translate(-80px, 35px) scale(1.1);
+  }
+
+  #show-guesses:hover #show-guesses-applin{
+    transform: translate(74px, 30px) scale(1.1);
+  }
+
+  #show-guesses:hover #show-guesses-miltank{
+    transform: translate(-170px, 22px) scale(1.1);
+  }
+
+  #show-guesses:hover #show-guesses-gastly{
+    transform: translate(-35px, -35px) scale(1.1);
   }
   
   canvas {
