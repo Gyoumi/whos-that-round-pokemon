@@ -7,15 +7,20 @@
     font-family: 'pokemon-hollow';
     src: url('./files/fonts/Pokemon Hollow.ttf');
 }
+
+:root {
+  font-size: 16px;
+  -webkit-text-size-adjust: initial;
+}
+
 body {
     margin: 0;
     border: 0;
-    background-color: #f5f1cd;
+    background-color: #645a4e;
     font-family: "Anonymous Pro", monospace;
     font-weight: 400;
-    font-size: 1.5vw;
+    font-size: 3rem;
     color: black;
-    text-fill-color: black;
     -webkit-text-fill-color: black;
     display:flex;
     flex-direction: column;
@@ -23,11 +28,130 @@ body {
 }
 H1{
     font-weight: 700;
+    font-size: 3rem;
 }
+
+H2 {
+  font-size: 4rem;
+}
+
+#navbar {
+  background-color: #1C1C1C;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+}
+
+.nav-button {
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  padding: 0.3vh 1vh;
+  border-radius: 0;
+  background-color: #1C1C1C;
+  color: #f5f1cd;
+  -webkit-text-fill-color: #f5f1cd;
+  border: none;
+  font-size: 2vh;
+  font-weight: 600;
+}
+
+.nav-button:hover {
+  background: #f5f1cd;
+  color: #1C1C1C;
+  -webkit-text-fill-color: #1C1C1C;
+}
+
+#nav-top {
+  padding: 0.1vh 1vh;
+}
+
+#nav-top:hover {
+  background-color: #f5f1cd;
+}
+
+#nav-top img{
+  height: 4vh;
+}
+
+#nav-reset {
+  text-decoration: none;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#nav-guesses {
+  margin-left: auto;
+}
+
+.material-symbols-outlined {
+  -webkit-text-fill-color: #696969;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+
+#nav-volume {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0.2vh 2vh;
+  margin-right: 2vh;
+  border-radius: 0;
+  background-color: #1C1C1C;
+  color: #f5f1cd;
+  -webkit-text-fill-color: #f5f1cd;
+  border: none;
+  font-size: 2vh;
+}
+
+#audio-volume {
+  outline: none;
+  cursor: pointer;
+  border-radius: 20rem;
+  -webkit-appearance: none;
+  width: 10vw;
+  margin: 0.5vw;
+
+  background: linear-gradient(to right, red 50%, #696969 50%);
+  height: 0.5vh;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background: #f5f1cd;
+      border-radius: 50%;
+      /* box-shadow: -20.5rem 0 0 20.1rem red, 20.5rem 0 0 20.1rem grey; */
+      cursor: pointer;
+      height: 1.25vh;
+      width: 1.25vh;
+    }
+
+  &::-moz-range-thumb {
+    background: #f5f1cd;
+    border-radius: 50%;
+    /* box-shadow: -20.5rem 0 0 20.1rem red, 20.5rem 0 0 20.1rem grey; */
+    cursor: pointer;
+    height: 1.25vh;
+    width: 1.25vh;
+  }
+
+  &::-ms-tooltip {
+      display: none;
+  }
+}
+
 #welcome {
     margin: 0;
     border: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +159,8 @@ H1{
     text-align: center;
     overflow: hidden;
     background-color: #1C1C1C;
+    border-bottom-left-radius: 3vw;
+    border-bottom-right-radius: 3vw;
 }
 
 #welcome h1 {
@@ -47,41 +173,40 @@ H1{
 }
 
 #welcome img {
-    width: 50vw;
-    border-radius: 2.5em;
+    max-width: 50vw;
+    border-radius: 2.5rem;
+    margin-bottom: 10vh;
 }
 
 #page {
+    padding-top: 15vh;
+    background-color: #f5f1cd;
+    border-top-left-radius: 3vw;
+    border-top-right-radius: 3vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 0;
 }
 .pokemon {
     text-align: center;
     font-family: pokemon-solid, monospace;
-    font-size: 3vw;
+    font-size: 7.5vh;
     letter-spacing: 0.1em; 
-    -webkit-text-stroke: 5px #3A5EA9;
-    text-stroke: 5px #3A5EA9; 
+    -webkit-text-stroke: 0.4vh #3A5EA9;
     -webkit-text-fill-color: #FFCB05; 
-    text-fill-color: #FFCB05; 
     text-shadow:  
-      -6px 6px 0 #1D2C5E,   
-      -10px 10px 0 rgba(0, 0, 0, 0.5);
+      -0.75vh 0.75vh 0 #1D2C5E,   
+      -1vh 1vh 0 rgba(0, 0, 0, 0.5);
 }
 
 #guesses {
     display: none;
 }
-
-#answer {
-    display: none;
-}
   
   p {
     text-align: center;
-    font-size: 0.7vw;
+    font-size: 1.5vh;
   }
 
   .is-it {
@@ -89,7 +214,7 @@ H1{
   }
   
   .guess-div {
-    height: 100vh;
+    min-height: 100vh;
     text-align: center;
   }
 
@@ -110,7 +235,8 @@ H1{
   }
 
   .fullview-text {
-    height: 50vh;
+    text-align: center;
+    min-height: 50vh;
   }
 
   .halfview-text {
@@ -120,13 +246,29 @@ H1{
   #guess {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 15vh;
   }  
+
+  #guess h5{
+    text-align: center;
+  }
+
+  #wrong-answer {
+    display: none;
+    align-self: center;
+    text-align: center;
+  }
+
+  #guess-again {
+    margin: 0;
+    margin-left: -1rem;
+  }
 
   .container {
     width: 32rem;
-    margin-left: -3.5vw;
+    margin: -1rem;
   }
 
   .entry-area {
@@ -149,7 +291,7 @@ H1{
     border-radius: 10px;
     border: 2px solid rgb(100, 100, 100);
     transition: 0.1s ease;
-    z-index: 1111;
+    z-index: 1;
     background-image: url(files/ball-white.png);
     background-color: transparent;
     background-size: 40px 40px;
@@ -181,13 +323,16 @@ H1{
     height: 30px;
     line-height: 30px;
     transform: translate(2px, -64px) scale(0.88);
-    z-index: 1111;
+    z-index: 1;
     -webkit-text-fill-color: black;
   }
 
   #custom-guess-form button {
     margin-top: 3rem;
     margin-left: 15.5rem;
+  }
+
+  .custom-guess-button {
     padding: 0.6rem 1rem;
     border-radius: 10px;
     background-color: rgb(100, 100, 100);
@@ -197,18 +342,19 @@ H1{
     transition: 0.2s;
   }
 
-  #custom-guess-form button:hover,
-  #custom-guess-form button:focus {
+  .custom-guess-button:hover,
+  .custom-guess-button:focus {
     background-color: #D91413;
     cursor: pointer;
   }
 
   #all-guesses {
-    margin-top: 10vh;
+    margin: 10vh;
     font-size: 3rem;
     display: grid;
     place-items: center;
     box-sizing: border-box;
+    text-align: center;
   }
   
   .button {
@@ -244,7 +390,15 @@ H1{
 
   #show-guesses-text {
     position: relative;
-    z-index: 10;
+    z-index: 1;
+  }
+
+  .show-guesses-img {
+    display: block;
+  }
+
+  .hide-guesses-img {
+    display: none;
   }
 
   #show-guesses img {
@@ -332,13 +486,55 @@ H1{
     transform: translate(-35px, -35px) scale(1.1);
   }
   
+  #canvas-container {
+    width: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5vh;
+  }
+
   canvas {
-    display: block;
-    margin: 0 auto;
+    margin: 0;
+    border-radius: 12vh;
+  }
+
+  #answer-div {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #answer-imgs {
+    position: relative;
+    margin-top: 23vh;
+    margin-bottom: 25vh;
+    display: grid;
+    place-items: center;
+  }
+
+  .result-img {
+    max-width: 80vw;
+    max-height: 50vh;
+    position: absolute;
+    margin: auto;
+  }
+
+  .result-transition {
+    transition: opacity 1s ease-in-out;
+  }
+
+  .result-transparent {
+    opacity: 0;
   }
 
   #give-up {
-    margin-top: 20vh;
+    scroll-margin-top: 5vh;
+    scroll-snap-margin-top: 5vh;
+    margin-bottom: 2rem;
   }
   
   #show-answer {
@@ -349,43 +545,85 @@ H1{
     cursor: pointer;
     transform: scale(1.1);
   }
+
+  #wave{
+    height: 3rem;
+    display: none;
+    align-items: center;
+  }
+
+  #wave .stroke {
+    position: relative;
+    background: #f1f1f1;
+    height: 100%;
+    width: 0.5rem;
+    border-radius: 50px;
+    margin: 0 0.25rem;
+    animation: animate-wave 1.2s linear infinite;
+  }
+
+  @keyframes animate-wave {
+    50%{
+      height: 20%;
+    }
+    100%{
+      height: 100%;
+    }
+  }
+
+  .stroke:nth-child(1) {
+    animation-delay: 0s;
+  }
   
-  .discord-button {
-    background-color: #FFCB05; 
-    border: none;
-    color: #3A5EA9; 
-    padding: 10px 20px; 
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  #wave .stroke:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  #wave .stroke:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  #wave .stroke:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+
+  #wave .stroke:nth-child(5) {
+    animation-delay: 0.6s;
+  }
+
+  #wave .stroke:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+
+  #wave .stroke:nth-child(7) {
+    animation-delay: 0s;
+  }
+
+  #answer {
+    display: none;
+    margin-top: -3rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  #answer-reveal {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  #discord-pfp {
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+    transition: 0.2s;
+  }
+
+  #discord-pfp:hover {
     cursor: pointer;
-    border-radius: 5px; 
+    transform: scale(0.95);
   }
-  
-  .discord-button:hover {
-    background-color: #3A5EA9; 
-    color: #FFCB05; 
-  }
-  
-  .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #3A5EA9; 
-    color: #FFCB05; 
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .button:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+
+  #discord-add-msg {
+    margin: 1rem;
   }

@@ -5,13 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Who's That Pokémon?</title>
   <script src="./wordcloud/wordcloud2.js"></script>
+  <link rel="icon" type="image/x-icon" href="files/pokeball.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD@100..700,0..1,-50..200" />
 </head>
 <body>
-  <audio id="audio" src="files/who's_that_PoKéMoN.mp3" autoplay></audio>
+  <audio id="audio" src="files/who's_that_PoKéMoN.mp3"></audio>
+  <div id="navbar">
+    <button class="nav-button" id="nav-top"><img src="files/pokeball.png" alt="pokeball"></button>
+    <a class="nav-button" id="nav-reset" href="/">Reset page</a>
+    <button class="nav-button" id="nav-guesses">Is it..</button>
+    <button class="nav-button" id="nav-custom-guess">Make a Guess</button>
+    <button class="nav-button" id="nav-all-guesses">All Guesses</button>
+    <button class="nav-button" id="nav-answer">Give up?</button>
+    <div id="nav-volume">
+      <span class="material-symbols-outlined">
+        volume_down
+        </span>
+      <input type="range" id="audio-volume" min="1" max="100" value="50">
+      <span class="material-symbols-outlined">
+        volume_up
+        </span>
+    </div>
+  </div>
   <div id="welcome">
         <H1>Who's that</H1> 
       <img src="files/circle.png" alt="Who's That PoKéMoN?">
@@ -117,15 +136,21 @@
     <H4 class="halfview-text">I'm out of ideas...</H4>
 
     <div id = "guess">
-      <H5>Got any guesses of your own?</H5>
-      <div class="container">
-        <div class="entry-area">
-          <form id = "custom-guess-form">
-            <input type = "text" id="custom-guess" name="custom-guess" autocomplete="off" required>
-            <div class="custom-guess-label">Any ideas?</div>
-            <button type = "submit">Guess!</button>
-          </form>
+      <div id="custom-guess-div">
+        <H5>Got any guesses of your own?</H5>
+        <div class="container">
+          <div class="entry-area">
+            <form id = "custom-guess-form">
+              <input type = "text" id="custom-guess" name="custom-guess" autocomplete="off" required>
+              <div class="custom-guess-label">Any ideas?</div>
+              <button class="custom-guess-button" type = "submit">Guess!</button>
+            </form>
+          </div>
         </div>
+      </div>
+      <div id="wrong-answer">
+        <H3>Nope!</H3>
+        <button class="custom-guess-button" id="guess-again">Guess again!</button>
       </div>
     </div>
 
@@ -135,31 +160,44 @@
         <span id="show-guesses-text">
           Show all guesses!
         </span>
-        <img src="files/golem.png" id="show-guesses-golem">
-        <img src="files/wooloo.png" id="show-guesses-wooloo">
-        <img src="files/darmanitan.png" id="show-guesses-darmanitan">
-        <img src="files/eldegoss.png" id="show-guesses-eldegoss">
-        <img src="files/applin.png" id="show-guesses-applin">
-        <img src="files/miltank.png" id="show-guesses-miltank">
-        <img src="files/gastly.png" id="show-guesses-gastly">
+        <img src="files/golem.png" id="show-guesses-golem" class="show-guesses-img">
+        <img src="files/wooloo.png" id="show-guesses-wooloo" class="show-guesses-img">
+        <img src="files/darmanitan.png" id="show-guesses-darmanitan" class="show-guesses-img">
+        <img src="files/eldegoss.png" id="show-guesses-eldegoss" class="show-guesses-img">
+        <img src="files/applin.png" id="show-guesses-applin" class="show-guesses-img">
+        <img src="files/miltank.png" id="show-guesses-miltank" class="show-guesses-img">
+        <img src="files/gastly.png" id="show-guesses-gastly" class="show-guesses-img">
         </button>
-      <canvas id = "guesses"></canvas>
+        <div id="canvas-container">
+          <canvas id = "guesses"></canvas>
+        </div>
     </div>
 
       
-    <H2 id = "give-up">Give up?</H2>    
-    <img src="files/circle.png" alt="Who's That Pokémon?" id="result-img">
-    <button id="show-answer" class="button">Show answer!</button>
-    <div id = "answer">
-      <H2>It's...</H2>
-      <H1 class="pokemon" id="answer-reveal">Eternatus as my Discord profile picture!</H1>
-
-      <H4>Add me on Discord!</H4>
-      <button class="discord-button" onclick="tooltipFunction()" onmouseout="outFunc()">
-        gumm
-          <span class="tooltiptext" id="myTooltip"></span>
-      </button>
+    <div id="answer-div">
+      <H2 id = "give-up">Give up?</H2>    
+      <div id="answer-imgs">
+        <img src="files/answer.png" alt="answer" class="result-img">
+        <img src="files/circle.png" alt="Who's That Pokémon?" class="result-img" id="result-mystery">
       </div>
+      <button id="show-answer" class="button">
+        <div id="show-answer-text">Reveal answer!</div>
+        <div id="wave">
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+        </div>
+      </button>
+      <div id = "answer">
+        <H1 class="pokemon" id="answer-reveal">Eternatus as my Discord profile picture!</H1>
+        <img src="files/discord.png" alt="Discord pfp?" id="discord-pfp">
+        <H4 id="discord-add-msg">Click above to copy my Discord name!</H4>
+      </div>
+    </div>
   </div>
     
   <script src="./script.js"></script>
