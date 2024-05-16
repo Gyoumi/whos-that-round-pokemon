@@ -219,6 +219,7 @@ if (!window.clearImmediate) {
       minRotation: -Math.PI / 2,
       maxRotation: Math.PI / 2,
       rotationSteps: 0,
+      rotationRules: true,
 
       shuffle: true,
       rotateRatio: 0.1,
@@ -237,6 +238,14 @@ if (!window.clearImmediate) {
         if (key in settings) {
           settings[key] = options[key]
         }
+      }
+    }
+
+    /* Convert rotationRules into a function */
+    if (typeof settings.rotationRules !== 'function') {
+      var canRotate = settings.rotationRules;
+      settings.rotationRules = function rotationRules () {
+        return canRotate;
       }
     }
 
@@ -501,7 +510,15 @@ if (!window.clearImmediate) {
     }
 
     /* Get the deg of rotation according to settings, and luck. */
-    var getRotateDeg = function getRotateDeg () {
+    var getRotateDeg = function getRotateDeg (weight) {
+      let currMinRotation = minRotation;
+      let currMaxRotation = settings.maxRotation;
+      let currRotationRange = rotationRange;
+      if(!settings.rotationRules(weight)) {
+        currMinRotation = currMinRotation / 2;
+        currMaxRotation = currMaxRotation / 2;
+        currRotationRange = Math.abs(currMaxRotation - currMinRotation);
+      }
       if (settings.rotateRatio === 0) {
         return 0
       }
@@ -510,17 +527,20 @@ if (!window.clearImmediate) {
         return 0
       }
 
-      if (rotationRange === 0) {
-        return minRotation
+      if (currRotationRange === 0) {
+        return currMinRotation
       }
 
       if (rotationSteps > 0) {
+        if(rotationSteps % 2 == 1) {
+          rotationSteps++;
+        }
         // Min rotation + zero or more steps * span of one step
-        return minRotation +
+        return currMinRotation +
           Math.floor(Math.random() * rotationSteps) *
-          rotationRange / (rotationSteps - 1)
+          currRotationRange / (rotationSteps - 1)
       } else {
-        return minRotation + Math.random() * rotationRange
+        return currMinRotation + Math.random() * currRotationRange
       }
     }
 
@@ -925,7 +945,7 @@ if (!window.clearImmediate) {
         weight = item.weight
         attributes = item.attributes
       }
-      var rotateDeg = getRotateDeg()
+      var rotateDeg = getRotateDeg(weight)
 
       var extraDataArray = getItemExtraData(item)
 

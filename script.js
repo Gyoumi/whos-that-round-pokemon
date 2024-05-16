@@ -31,6 +31,8 @@ const audio = document.querySelector('#audio');
 const audio_volume = document.querySelector('#audio-volume');
 audio.volume = 0.25;
 
+const server = "https://whos-that-round-pokemon.up.railway.app";
+
 const form = document.querySelector('#custom-guess-form');
 const wrong_answer_div = document.querySelector('#wrong-answer');
 const guess_again = document.querySelector('#guess-again');
@@ -78,7 +80,7 @@ function checkGuess(guess) {
 
 async function submitGuess(e, guess) {
     try {
-        const res = await fetch('http://localhost:8000', {
+        const res = await fetch(server, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -140,7 +142,7 @@ async function showGuesses(e) {
         return;
     }
 
-    const res = await fetch('http://localhost:8000');
+    const res = await fetch(server);
     if(!res.ok) {
         throw new Error('Failed to fetch all guesses');
     }
@@ -151,27 +153,38 @@ async function showGuesses(e) {
 
     console.log(WordCloud.isSupported);
 
+    let buttonText = "Wordcloud not supported..."
+
     if(WordCloud.isSupported) {
-        createWordCloud(data);
+        buttonText = createWordCloud(data);
+
+        const show_guesses_imgs = document.getElementsByClassName('show-guesses-img');
+        [...show_guesses_imgs].forEach(img => {
+            img.classList.remove('show-guesses-img');
+            img.classList.add('hide-guesses-img');
+        });
     } else {
         console.log(data);
     }    
-
-    show_guesses_text.innerHTML = "Hide all guesses";
-
-    const show_guesses_imgs = document.getElementsByClassName('show-guesses-img');
-    [...show_guesses_imgs].forEach(img => {
-        img.classList.remove('show-guesses-img');
-        img.classList.add('hide-guesses-img');
-    });
+    show_guesses_text.innerHTML = buttonText;
 }
 
 function createWordCloud(guesses) {
-    if(guesses.length < 1) return;
+    if(guesses.length < 1) return "No guesses found!";
     const data = new Array();
 
     let maxCount = 0;
+    let minCount = guesses[0].count;
+    let letterCounts = 0;
+    let maxWord = "";
     let guessCounts = new Map();
+    let total = 0;
+
+    canvas_container.style.height = "70vh";
+    canvas_container.style.fontSize = "50vw";
+
+    let y = canvas_container.offsetHeight
+    let x = canvas_container.offsetWidth
 
     guesses.forEach((guess) => {
         data.push( 
@@ -186,32 +199,49 @@ function createWordCloud(guesses) {
         }
 
         guessCounts.set(guess.count, guessCounts.get(guess.count)+1)
-        maxCount = Math.max(maxCount, guess.count);
+        if(guess.count == maxCount) {
+            maxWord = maxWord.length > guess.guess.length ? maxWord : guess.guess;
+        } else if (guess.count > maxCount) {
+            maxCount = guess.count;
+            maxWord = guess.guess;
+        }
+        total += guess.count;
+        letterCounts += guess.guess.length;
     });
 
-    canvas_container.style.height = "50vh";
+    data.sort((a, b) => {
+        if(a[1] === b[1]) {
+            return b[0].length - a[0].length;
+        }
+        return b[1] - a[1];
+    });
 
     
     //const data = [['pokeball', 20], ['ultra ball', 90], ['jigglypuff as seen from above', 150], ['voltorb', 50], ['electrode', 30], ['golem', 60]];
-    
-    let y = canvas_container.offsetHeight
-    let x = canvas_container.offsetWidth
+
     canvas.height = y;
     canvas.width = x;
 
-    console.log("gridsize:" , x);
+    // pixel formula: x*0.275
+    let base = x*(0.275 * (data.length / total));
+
+    console.log(data);
+
     WordCloud(canvas, {
         list: data,
         fontFamily: 'pokemon-solid',
         color: 'random-light',
         gridSize: 0,
-        weightFactor: (amnt) => (amnt * (y / (maxCount * (maxCount / 2))) + (1/(amnt/maxCount))) * ((2048 * guessCounts.get(amnt) - (guessCounts.get(amnt)+1)) / (2048 * guessCounts.get(amnt))), 
         backgroundColor: '#1C1C1C',
-        origin: [x*0.5, y*0.45],
+        weightFactor: (amnt) => amnt * base / Math.sqrt(data.length * maxCount) * Math.cbrt(data.length) * Math.cbrt(total / amnt),
         drawOutOfBound: true,
+        rotationRules: (amnt) => amnt < total * 4/7,
+        origin: [x*0.5, y*0.5],
     });
     canvas.style.display = "block";
     displaying_wordcloud = true;
+
+    return "Hide all guesses;"
 }
 
 function showAnswer() {
