@@ -223,7 +223,7 @@ function createWordCloud(guesses) {
     canvas.width = x;
 
     // pixel formula: x*0.275
-    let base = x*(0.275 * (data.length / total));
+    let base = x*(0.275 * (guessCounts.get(maxCount) / total));
 
     //console.log(data);
 
