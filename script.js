@@ -236,10 +236,12 @@ function createWordCloud(guesses) {
         weightFactor: (amnt) => amnt * base / Math.sqrt(data.length * maxCount) * Math.cbrt(data.length) * Math.cbrt(total / amnt),
         drawOutOfBound: true,
         rotationRules: (amnt) => amnt < total * 4/7,
-        origin: [x*0.5, y*0.5],
+        origin: [x*0.5, y*0.5 / guessCounts.get(maxCount)],
     });
     canvas.style.display = "block";
     displaying_wordcloud = true;
+
+    show_guesses_button.scrollIntoView(true, {behavior: "smooth"});
 
     return "Hide all guesses;"
 }
