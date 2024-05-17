@@ -223,7 +223,7 @@ function createWordCloud(guesses) {
     canvas.width = x;
 
     // pixel formula: x*0.275
-    let base = x*(0.275 * (guessCounts.get(maxCount) / total));
+    //let base = x*(0.0375 * maxWord.length * (guessCounts.get(maxCount) / total));
 
     //console.log(data);
 
@@ -233,8 +233,9 @@ function createWordCloud(guesses) {
         color: 'random-light',
         gridSize: 0,
         backgroundColor: '#1C1C1C',
-        weightFactor: (amnt) => amnt * base / Math.sqrt(data.length * maxCount) * Math.cbrt(data.length) * Math.cbrt(total / amnt),
+        weightFactor: x / data.length / total,
         drawOutOfBound: true,
+        shrinkToFit: true,
         rotationRules: (amnt) => amnt < total * 4/7,
         origin: [x*0.5, y*0.5 / guessCounts.get(maxCount)],
     });
