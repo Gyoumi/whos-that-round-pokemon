@@ -31,7 +31,7 @@ const audio = document.querySelector('#audio');
 const audio_volume = document.querySelector('#audio-volume');
 audio.volume = 0.25;
 
-const server = "https://whos-that-round-pokemon.up.railway.app";
+const server = "http://whos-that-round-pokemon.railway.internal:8000";
 
 const form = document.querySelector('#custom-guess-form');
 const wrong_answer_div = document.querySelector('#wrong-answer');
