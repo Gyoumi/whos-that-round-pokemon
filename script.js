@@ -91,7 +91,7 @@ async function submitGuess(e, guess) {
         if(!res.ok) {
             throw new Error('Failed to submit guess');
         }
-        console.log(guess);
+        //console.log(guess);
         displaying_wordcloud = !displaying_wordcloud;
         showGuesses(e);
     } catch (error) {
@@ -121,7 +121,7 @@ async function makeGuess(e) {
         custom_guess_div.style.display = "none";
         wrong_answer_div.style.display = "block";
     }
-    console.log(JSON.stringify({guess}));
+    //console.log(JSON.stringify({guess}));
 }
 
 // display guesses (as wordcloud)
@@ -151,7 +151,7 @@ async function showGuesses(e) {
 
     //const guesses = [];
 
-    console.log(WordCloud.isSupported);
+    //console.log(WordCloud.isSupported);
 
     let buttonText = "Wordcloud not supported..."
 
@@ -174,8 +174,8 @@ function createWordCloud(guesses) {
     const data = new Array();
 
     let maxCount = 0;
-    let minCount = guesses[0].count;
-    let letterCounts = 0;
+    //let minCount = guesses[0].count;
+    //let letterCounts = 0;
     let maxWord = "";
     let guessCounts = new Map();
     let total = 0;
@@ -206,7 +206,7 @@ function createWordCloud(guesses) {
             maxWord = guess.guess;
         }
         total += guess.count;
-        letterCounts += guess.guess.length;
+        //letterCounts += guess.guess.length;
     });
 
     data.sort((a, b) => {
@@ -225,7 +225,7 @@ function createWordCloud(guesses) {
     // pixel formula: x*0.275
     let base = x*(0.275 * (data.length / total));
 
-    console.log(data);
+    //console.log(data);
 
     WordCloud(canvas, {
         list: data,
@@ -314,7 +314,6 @@ function adjustSlider(e) {
 };
 
 // event listeners
-console.log("ready!");
 form.addEventListener('submit', makeGuess);
 guess_again.addEventListener('click', displayForm);
 show_guesses_button.addEventListener('click', showGuesses);
